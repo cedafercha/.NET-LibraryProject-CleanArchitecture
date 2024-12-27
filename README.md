@@ -1,31 +1,32 @@
 # README :)
 
-Practical exercise working with different topics such as:
-- Clean Architecture having different layers with unique responsibilities.
-- CQRS pattern for handling read and write in separate processes.
-- AAA pattern in Tests improving order and readability at the time of development.
-- Exception middleware for better control of response messages and http codes.
-- Handling asynchronous processes using Tasks.
-- Linq for DB queries/writes.
-- SOLID principles.
-- Mediator pattern.
-- Clean code.
+Practical exercise covering various topics, including:
+
+- **Clean Architecture:** Designing layers with unique responsibilities.
+- **CQRS pattern:** Handling read and write operations in separate processes.
+- **AAA pattern in Tests:** Enhancing order and readability during development.
+- **Exception middleware:** Improving control over response messages and HTTP codes.
+- **Asynchronous Processes:** Managing tasks effectively.
+- **LINQ:** Performing database queries and writes.
+- **SOLID Principles:** Ensuring maintainable and scalable code.
+- **Mediator Pattern:** Facilitating communication between objects.
+- **Clean Code:** Writing readable and well-structured code.
 
 ## Project Structure - Layers
 ### Api
-- In this layer the Controller is declared along with the Exception Middleware.
+- This layer contains the Controller and the Exception Middleware.
  
 ### Application
-- Contains the ViewModels, the Profiles for handling AutoMapper and the Query-Commands implemented with Mediator.
+- This layer includes the ViewModels, Profiles for handling AutoMapper, and Query-Commands implemented using the Mediator pattern.
 
 ### Domain
-- It has the business logic, mainly the LoanService, which is responsible for the entire main process of the system.
+- This layer contains the business logic, primarily the **LoanService**, which is responsible for managing the core processes of the system.
 
 ### Infrastructure
-- It is responsible for having access to the DB with Finder and Repository classes, separating reading and writing responsibilities.
+- his layer manages database access using Finder and Repository classes, separating reading and writing responsibilities.
 
 ### Tests
-- Unit and integration tests.
+- This layer includes both unit and integration tests.
 
 ## Running the App
 ```sh
@@ -33,44 +34,56 @@ dotnet build
 dotnet run --project ./LibraryProject/LibraryProject.Api/LibraryProject.Api.csproj
 
 // The application is now running on port 5002.
-// If you want to use it with Swagger, go to the /swagger route on port 5002.
+// If you want to use Swagger, navigate to the /swagger route on port 5002.
 ```
 
 ## Endpoints
-###### This exercise use in-memory DB.
+###### This exercise uses an in-memory database.
 
 ### POST - LOAN
-In this endpoint we can create a new loan using the following payload:
+This endpoint allows us to create a new loan using the following payload:
+
 ```json
 {
-    "isbn": guid;
-    "userType": should be an integer value between 1 and 3;
-    "userId": Alfanumeric;
+    "isbn": "guid";
+    "userType": "number"; // should be an integer value between 1 and 3
+    "userId": "string";
 }
 ```
 
 The system simulates a new loan with the following rules:
-- A user can have only 1 loan at a time. If the user already has an active loan, the system returns an error.
-- The process provides a return date based on the user type ignoring Saturdays and Sundays.
-    - UserType 1 (Affiliated): 10 days.
-    - UserType 2 (Employee): 8 days.
-    - UserType 3 (Guest): 7 days.
-- The endpoint also provides a data type validation for all properties, ensuring a correct functionality.
+
+1. Loan Restrictions:
+
+    - A user can have only one loan at a time.
+    - If the user already has an active loan or the book is already on loan, the system returns an error.
+
+2. Return Date Calculation:
+
+    - The system determines a return date based on the user type, excluding Saturdays and Sundays.
+        - UserType 1 (Affiliated): 10 days.
+        - UserType 2 (Employee): 8 days.
+        - UserType 3 (Guest): 7 days.
+
+3. Data Validation:
+
+    - The endpoint validates the data type of all properties to ensure proper functionality.
 
 ### GET - LOAN BY ID
-This endpoint provides the loan record with the following structure:
+This endpoint retrieves the loan record with the following structure:
 
 ```json
 {
-    "id": guid;
-    "isbn": guid;
-    "userId": string;
-    "UserType": UserType;
-    "ReturnDate": DateTime;
+    "id": "guid";
+    "isbn": "guid";
+    "userId": "string";
+    "UserType": "number";
+    "ReturnDate": "string"; // Date with format dd/MM/yyyy
 }
 ```
 
 If a loan with the provided id doesn't exist, the system returns an error with a 404 NotFound code.
 
 ### GET - ALL LOANS
-The endpoint returns an array with all the loans in the system.
+The endpoint returns an array containing all loans in the system.
+
