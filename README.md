@@ -23,7 +23,7 @@ Practical exercise covering various topics, including:
 - This layer contains the business logic, primarily the **LoanService**, which is responsible for managing the core processes of the system.
 
 ### Infrastructure
-- his layer manages database access using Finder and Repository classes, separating reading and writing responsibilities.
+- This layer manages database access using Finder and Repository classes, separating reading and writing responsibilities.
 
 ### Tests
 - This layer includes both unit and integration tests.
