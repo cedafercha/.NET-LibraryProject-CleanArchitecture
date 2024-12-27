@@ -43,11 +43,11 @@ dotnet run --project ./LibraryProject/LibraryProject.Api/LibraryProject.Api.cspr
 ### POST - LOAN
 This endpoint allows us to create a new loan using the following payload:
 
-```json
+```javascript
 {
-    "isbn": "guid";
-    "userType": "number"; // should be an integer value between 1 and 3
-    "userId": "string";
+    "isbn": "guid"
+    "userType": "number" // should be an integer value between 1 and 3
+    "userId": "string"
 }
 ```
 
@@ -72,13 +72,13 @@ The system simulates a new loan with the following rules:
 ### GET - LOAN BY ID
 This endpoint retrieves the loan record with the following structure:
 
-```json
+```javascript
 {
-    "id": "guid";
-    "isbn": "guid";
-    "userId": "string";
-    "UserType": "number";
-    "ReturnDate": "string"; // Date with format dd/MM/yyyy
+    "id": "guid"
+    "isbn": "guid"
+    "userId": "string"
+    "UserType": "number"
+    "ReturnDate": "string" // Date with format dd/MM/yyyy
 }
 ```
 
